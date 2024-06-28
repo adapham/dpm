@@ -1,0 +1,44 @@
+Configuration:
+  status: warn
+  Appenders:
+    Console:
+      name: CONSOLE
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%t] %c{1}.%M(%L) - %notEmpty{%X{v-request-id} } %msg%n'
+    RollingRandomAccessFile:
+      - name: INFO
+        fileName: log/dpmapi.log
+        filePattern: log/$${date:yyyy-MM}/%d{yyyy-MM-dd}-dpmapi-%i.log.gz
+        PatternLayout:
+          pattern: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%t] %c{1}.%M(%L) - %notEmpty{%X{v-request-id} } %msg%n'
+        Policies:
+          TimeBasedTriggeringPolicy: {
+          }
+          OnStartupTriggeringPolicy: {
+          }
+          SizeBasedTriggeringPolicy:
+            size: 200 MB
+      - name: ERROR
+        fileName: log/dpmapi.log
+        filePattern: log/$${date:yyyy-MM}/%d{yyyy-MM-dd}-dpmapi-%i.log.gz
+        PatternLayout:
+          pattern: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%t] %c{1}.%M(%L) - %notEmpty{%X{v-request-id} } %msg%n'
+        Policies:
+          TimeBasedTriggeringPolicy: {
+          }
+  Loggers:
+    Logger:
+      - name: EventLogger
+        level: info
+        additivity: false
+        AppenderRef:
+          - ref: ERROR
+          - ref: INFO
+    Root:
+      level: info
+      AppenderRef:
+        - ref: CONSOLE
+        - ref: ERROR
+          level: error
+        - ref: INFO
