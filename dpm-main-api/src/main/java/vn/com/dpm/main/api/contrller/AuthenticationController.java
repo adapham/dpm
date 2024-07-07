@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import vn.com.dpm.main.api.model.entity.User;
 import vn.com.dpm.main.api.model.request.SignInRequest;
 import vn.com.dpm.main.api.model.response.SignInResponse;
+import vn.com.dpm.main.api.model.response.UserInfo;
 import vn.com.dpm.main.api.service.AuthenticationService;
 
 @Slf4j
@@ -26,6 +28,11 @@ public class AuthenticationController {
 
     @PostMapping("/access")
     public ResponseEntity<SignInResponse> signIn(@Valid @RequestBody SignInRequest signInRequest) {
-        return new ResponseEntity<>(authenticationService.signIn(signInRequest), HttpStatus.OK);
+      return new ResponseEntity<>(authenticationService.signIn(signInRequest), HttpStatus.OK);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<UserInfo> register(@Valid @RequestBody SignInRequest signInRequest) {
+        return new ResponseEntity<>(authenticationService.register(signInRequest), HttpStatus.OK);
     }
 }

@@ -14,10 +14,16 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    database: MYSQL
     show-sql: false
     generate-ddl: false
     open-in-view: false
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 764783483803-27imov9a5i2qos9l51kv6mlgsdk8l4bd.apps.googleusercontent.com
+            client-secret: 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
   datasource:
     url: jdbc:mysql://localhost:3306/sakila?createDatabaseIfNotExist=true
     username: root
@@ -37,6 +43,10 @@ logging:
     org:
       hibernate:
         SQL: DEBUG
+      springframework:
+        security: TRACE
 jwt:
   token:
-    secretKey: mySecretKey
+    secretKey: d813f4d4db12a3a31af54500ce1c1fa2f44b54c6d06dbb3ebc2277d0cb58f926
+
+

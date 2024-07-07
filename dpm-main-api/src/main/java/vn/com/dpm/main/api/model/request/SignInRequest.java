@@ -12,7 +12,11 @@ public class SignInRequest implements Serializable {
     private String username;
 
     @NotBlank(message = "password must be not blank")
-    private String password;;
+    private String password;
+
+    private String email;
+
+    private String phone;
 
     private String version;
 

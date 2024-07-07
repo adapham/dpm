@@ -23,6 +23,9 @@ public class User extends AbstractEntity<Long> implements UserDetails {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "role")
+    private String role;
+
     @Column(name = "date_of_birth")
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
@@ -64,4 +67,6 @@ public class User extends AbstractEntity<Long> implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }
